@@ -1,0 +1,26 @@
+.formulario{
+  max-width: 1200px;
+  margin: 0 auto;
+
+}
+
+.centrar{
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.espaciado{
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+  background-color: rgb(201, 201, 201);
+  padding: 30px;
+}
+
+.form__dato{
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
