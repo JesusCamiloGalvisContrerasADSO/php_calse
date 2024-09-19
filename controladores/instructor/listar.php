@@ -36,8 +36,8 @@ $lista = $aprendiz->getAll();
         <td><?php print_r($lista[$i]['email']); ?></td>
         <td><?php print_r($lista[$i]['phone']); ?></td>
         <td><?php print_r($lista[$i]['dni']); ?></td>
-        <td><?php print_r($lista[$i]['user_accounts']); ?></td>
-        <td><?php print_r($lista[$i]['average']); ?></td>
+        <td><?php print_r($lista[$i]['salary']); ?></td>
+        <td><?php print_r($lista[$i]['adress']); ?></td>
         <td>
           <div>
             <a href="editar.php?id=<?= $lista[$i]['id'] ?>">Editar</a>

@@ -42,12 +42,12 @@ print_r($usuario);
     <input type="text" name="dni" value="<?= $usuario['dni'] ?> " readonly>
   </div>
   <div>
-    <label for="user_accounts">Ficha:</label>
-    <input type="text" name="user_accounts" value="<?= $usuario['user_accounts'] ?>" require>
+    <label for="salary">salario:</label>
+    <input type="text" name="salary" value="<?= $usuario['salary'] ?>" require>
   </div>
   <div>
-    <label for="average">Promedio:</label>
-    <input type="text" name="average" value="<?= $usuario['average'] ?>" require>
+    <label for="adress">Direccion:</label>
+    <input type="text" name="adress" value="<?= $usuario['adress'] ?>" require>
   </div>
   <button type="submit">actualizar</button>
 </form>

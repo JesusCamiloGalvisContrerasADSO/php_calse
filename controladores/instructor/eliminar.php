@@ -6,10 +6,10 @@ include_once("../../clases/Instructor.php");
 
 $datebase = new Database();
 $connection = $datebase->getConnection($datebase);
-$aprendiz = new Aprendiz($connection);
+$instructor = new Instructor($connection);
 
 $id = $_REQUEST['id'];
 
-$aprendiz->delete($id);
+$instructor->delete($id);
 
 header('Location: '. "listar.php");

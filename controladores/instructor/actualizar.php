@@ -26,12 +26,12 @@ $dni = isset($_POST['dni'])
 ? ($_POST['dni'] != "" ? $_POST['dni'] : false) 
 : false;
 
-$user_accounts = isset($_POST['user_accounts']) 
-? ($_POST['user_accounts'] != "" ? $_POST['user_accounts'] : false) 
+$user_accounts = isset($_POST['salary']) 
+? ($_POST['salary'] != "" ? $_POST['salary'] : false) 
 : false;
 
-$average = isset($_POST['average']) 
-? ($_POST['average'] != "" ? $_POST['average'] : false) 
+$average = isset($_POST['adress']) 
+? ($_POST['adress'] != "" ? $_POST['adress'] : false) 
 : false;
 
 
@@ -49,8 +49,8 @@ if($nombre && $apellido && $email && $telefono && $dni && $user_accounts && $ave
   $email      = $_POST["email"];
   $telefono   = $_POST["phone"];
   $dni        = $_POST["dni"];
-  $ficha        = $_POST["user_accounts"];
-  $promedio        = $_POST["average"];
+  $salario        = $_POST["salary"];
+  $direccion        = $_POST["adress"];
 
   $valor = $aprendiz->update($id ,[
     'firts_name'  => $nombre,
@@ -59,8 +59,8 @@ if($nombre && $apellido && $email && $telefono && $dni && $user_accounts && $ave
     'email'       => $email,
     'phone'       => $telefono,
     'dni'         => $dni,
-    'user_accounts' => $ficha ,
-    'average' => $promedio 
+    'user_accounts' => $salario ,
+    'average' => $direccion 
   ]);
 
   if($valor != null){

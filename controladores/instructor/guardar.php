@@ -44,8 +44,8 @@ if($nombre && $apellido && $email && $telefono && $dni){
     'email'       => $_POST["email"],
     'phone'       => $_POST["phone"],
     'dni'         => $_POST["dni"],
-    'user_accounts' => isset($_POST['user_accounts']) ? $_POST['user_accounts'] : '',
-    'average' => isset($_POST["average"]) ? $_POST["average"] : ''
+    'salary' => isset($_POST['salary']) ? $_POST['salary'] : '',
+    'adress' => isset($_POST["adress"]) ? $_POST["adress"] : ''
   ]);
 
   if($valor != null){
