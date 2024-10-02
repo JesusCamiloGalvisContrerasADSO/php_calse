@@ -1,6 +1,7 @@
 <?php
 class Persona extends Modelo
 {
+  protected $id; // Agregar la propiedad id
   protected $nombre;
   protected $apellido;
   protected $edad;
@@ -11,9 +12,23 @@ class Persona extends Modelo
 
   public function __construct($id, $table, $connection)
   {
+    $this->id = $id;
     parent::__construct($id, $table, $connection);
   }
 
+  // Getter para id
+  public function getId()
+  {
+    return $this->id;
+  }
+
+  // Setter para id
+  public function setId($id)
+  {
+    $this->id = $id;
+  }
+
+  // Otros getters y setters
   public function getNombre(){
     return $this->nombre;
   }
@@ -35,7 +50,6 @@ class Persona extends Modelo
   public function getDireccion(){
     return $this->direccion;
   }
-
 
   public function setNombre($nombre){
     $this->nombre = $nombre;
@@ -59,13 +73,5 @@ class Persona extends Modelo
   }
   public function setDireccion($direccion){
     $this->direccion = $direccion;
-  }
-
-
-
-
-  public function getFullName()
-  {
-    return "el nombre completo es: " . $this->nombre . " " . $this->apellido . " y su edad es " . $this->edad ;
   }
 }

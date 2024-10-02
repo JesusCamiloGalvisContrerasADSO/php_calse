@@ -5,6 +5,7 @@ class Aprendiz extends Persona{
 
   protected $cuenta;
   protected $promedio;
+  protected $fechaNacimiento;
 
   public function __construct(PDO $connection)
   {
@@ -20,6 +21,9 @@ class Aprendiz extends Persona{
     return $this->promedio;
   }
 
+  public function getFechaNacimiento() { // Getter para fecha de nacimiento
+    return $this->fechaNacimiento;
+  }
 
   public function setCuenta($cuenta){
     $this->cuenta = $cuenta;
@@ -27,6 +31,10 @@ class Aprendiz extends Persona{
 
   public function setPromedio($promedio){
     $this->promedio = $promedio;
+  }
+
+  public function setFechaNacimiento($fechaNacimiento) { // Setter para fecha de nacimiento
+      $this->fechaNacimiento = $fechaNacimiento;
   }
 
 

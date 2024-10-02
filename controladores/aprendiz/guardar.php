@@ -1,63 +1,64 @@
 <?php
+// Incluimos los archivos necesarios
 echo __DIR__;
 require_once(__DIR__."/../../libs/Database.php");
 require_once(__DIR__."/../../libs/Modelo.php");
 include_once("../../clases/Aprendiz.php");
 
+// Verificamos si los campos están presentes y no vacíos
+$nombre = isset($_POST['nombre']) && $_POST['nombre'] !== "" ? $_POST['nombre'] : false;
+$apellido = isset($_POST['apellido']) && $_POST['apellido'] !== "" ? $_POST['apellido'] : false;
+$correo = isset($_POST['correo']) && $_POST['correo'] !== "" ? $_POST['correo'] : false;
+$telefono = isset($_POST['telefono']) && $_POST['telefono'] !== "" ? $_POST['telefono'] : false;
+$documento = isset($_POST['documento']) && $_POST['documento'] !== "" ? $_POST['documento'] : false;
 
+// Verificamos que todos los campos requeridos estén presentes
+if ($nombre && $apellido && $correo && $telefono && $documento) {
 
-$nombre = isset($_POST['first_name']) 
-? ($_POST['first_name'] != "" ? $_POST['first_name'] : false) 
-: false;
+    // Obtenemos la conexión a la base de datos
+    $database = new Database();
+    $connection = $database->getConnection($database);
 
-$apellido = isset($_POST['last_name']) 
-? ($_POST['last_name'] != "" ? $_POST['last_name'] : false) 
-: false;
+    // Creamos una nueva instancia de Aprendiz
+    $aprendiz = new Aprendiz($connection);
 
-$email = isset($_POST['email']) 
-? ($_POST['email'] != "" ? $_POST['email'] : false) 
-: false;
-
-$telefono = isset($_POST['phone']) 
-? ($_POST['phone'] != "" ? $_POST['phone'] : false) 
-: false;
-
-$dni = isset($_POST['dni']) 
-? ($_POST['dni'] != "" ? $_POST['dni'] : false) 
-: false;
-
-if($nombre && $apellido && $email && $telefono && $dni){
-
-
-  $datebase = new Database();
-  $connection = $datebase->getConnection($datebase);
-  $aprendiz = new Aprendiz($connection);
-
-  $nombre     = $_POST["first_name"];
-  $apellido   = $_POST["last_name"];
-  $email      = $_POST["email"];
-  $telefono   = $_POST["phone"];
-  $dni        = $_POST["dni"];
-
-  $valor = $aprendiz->store([
-    'firts_name'  => $_POST["first_name"],
-    'last_name'   => $_POST["last_name"],
-    'email'       => $_POST["email"],
-    'phone'       => $_POST["phone"],
-    'dni'         => $_POST["dni"],
-    'user_accounts' => isset($_POST['user_accounts']) ? $_POST['user_accounts'] : '',
-    'average' => isset($_POST["average"]) ? $_POST["average"] : ''
+    // Asignamos los valores a través de los setters
+    $aprendiz->setNombre($nombre);
+    $aprendiz->setApellido($apellido);
+    $aprendiz->setCorreo($correo);
+    $aprendiz->setTelefono($telefono);
+    $aprendiz->setDocumento($documento);
     
-  ]);
+    // Asignamos valores opcionales solo si están presentes
+    if (isset($_POST['direccion'])) {
+        $aprendiz->setDireccion($_POST['direccion']);
+    }
+    
+    if (isset($_POST["edad"])) {
+        $aprendiz->setEdad($_POST["edad"]);
+    }
 
+    // Recopilamos los datos para pasarlos al método store
+    $data = [
+        'nombre' => $aprendiz->getNombre(),
+        'apellido' => $aprendiz->getApellido(),
+        'correo' => $aprendiz->getCorreo(),
+        'telefono' => $aprendiz->getTelefono(),
+        'documento' => $aprendiz->getDocumento(),
+        'direccion' => $aprendiz->getDireccion(),
+        'edad' => $aprendiz->getEdad()
+    ];
 
-  if($valor != null){
-    return header('Location: '. "listar.php");
-  }
+    // Guardamos los datos usando el método store y verificamos el resultado
+    $valor = $aprendiz->store($data);
 
-  
-}else{
-  var_dump("error al cargar los datos");
+    // Si el valor es correcto, redirigimos a listar.php
+    if ($valor != null) {
+        return header('Location: listar.php');
+    } else {
+        echo "Error al guardar los datos";
+    }
+
+} else {
+    var_dump("Error al cargar los datos. Todos los campos requeridos deben ser completados.");
 }
-
-
